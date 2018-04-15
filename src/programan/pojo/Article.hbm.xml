@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	
+	<class name="programan.pojo.Article" table="article" catalog="myboke">
+		<id name="id" type="java.lang.Integer">
+            <column name="id" length="20" not-null="true" />
+            <generator class="native" />
+        </id>
+		<property name="articleName" type="java.lang.String">
+			<column name="article_name" length="255" not-null="false" />
+		</property>
+		<many-to-one name="articleType" lazy="false" fetch="join" class="programan.pojo.ArticleType" cascade="all">
+			<column name="article_type_id" />
+		</many-to-one>
+		<property name="articleLink" type="java.lang.String">
+			<column name="article_link" length="255" not-null="false" />
+		</property>
+		<property name="creationDT" type="java.lang.String">
+			<column name="creation_dt" length="50" not-null="false" />
+		</property>
+		<many-to-one name="author" lazy="false" fetch="join" class="programan.pojo.Author" cascade="all">
+			<column name="article_author_id" />
+		</many-to-one>
+		<property name="articleIntroduction" type="java.lang.String">
+			<column name="article_introduction" length="255" not-null="false" />
+		</property>
+		<property name="visitsNumber" type="java.lang.Integer">
+			<column name="visits_number" length="20" not-null="false" />
+		</property>
+		<property name="poiontsNumber" type="java.lang.Integer">
+			<column name="points_number" length="20" not-null="false" />
+		</property>
+	</class>
+	
+	
+</hibernate-mapping>

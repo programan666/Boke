@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	
+	<class name="programan.pojo.Author" table="author" catalog="myboke">
+		<id name="id" type="java.lang.Integer">
+            <column name="id" length="20" not-null="true" />
+            <generator class="native" />
+        </id>
+		<property name="userName" type="java.lang.String">
+			<column name="user_name" length="40" not-null="false" />
+		</property>
+		<property name="passWord" type="java.lang.String">
+			<column name="pass_word" length="20" not-null="false" />
+		</property>
+		<property name="authorName" type="java.lang.String">
+			<column name="author_name" length="255" not-null="false" />
+		</property>
+	</class>
+	
+</hibernate-mapping>
