@@ -64,7 +64,7 @@ public class ArticleDaoImpl implements ArticleDao {
 		
 	}
 	
-	
+	//返回所有文章
 	@Override
 	public List<Article> findAll(){
 		System.out.println("进入了articleDao2");
@@ -72,6 +72,19 @@ public class ArticleDaoImpl implements ArticleDao {
 		String SQL="SELECT * FROM article";
 		@SuppressWarnings("unchecked")
 		List<Article> articles=session.createSQLQuery(SQL).addEntity(Article.class).list();
+		return articles;
+	}
+	
+	//根据文章类型返回相应的文章信息
+	@Override
+	public List<Article> findByType(int articleTypeID){
+		System.out.println("进入了articleDao3");
+		session=this.sessionFactory.getCurrentSession();
+		String SQL="SELECT * FROM article WHERE article_type_id=?";
+		@SuppressWarnings("unchecked")
+		List<Article> articles=session.createSQLQuery(SQL).addEntity(Article.class)
+						.setInteger(0, articleTypeID).list();
+		System.out.println("&&&&&articles:--"+articles);
 		return articles;
 	}
 

@@ -7,4 +7,5 @@ import programan.pojo.Article;
 public interface ArticleService {
 	public void createArticle(Article article);
 	public List<Article> findAll();
+	public List<Article> findByType(int articleTypeID);
 }

@@ -42,27 +42,9 @@
 		<div class="container">
 			
 			<div class="left-daohang">
-				<ul>
+				<ul id="articleType">
 					<li>
-						<a href="">人工智能</a>
-					</li>
-					<li>
-						<a href="">人工智能</a>
-					</li>
-					<li>
-						<a href="">人工智能</a>
-					</li>
-					<li>
-						<a href="">人工智能</a>
-					</li>
-					<li>
-						<a href="">人工智能</a>
-					</li>
-					<li>
-						<a href="">人工智能</a>
-					</li>
-					<li>
-						<a href="">人工智能</a>
+						<a onclick="getArticleByType(8)">人工智能</a>
 					</li>
 				</ul>
 			</div>
@@ -202,8 +184,9 @@
          //   $('#bootstrap-touch-slider').bsTouchSlider();
          
             
-            $(document).ready(function(){
+          //  $(document).ready(function(){
             	$.getJSON('http://localhost:7777/Boke/articleController/articleList.do',function(data){
+            //		alert("999");
 					$.each(data,function(index,article){
 						var html = '<li class="article-box">';
 						html += '<div class="title"><a target="_blank" href="'+ article.articleLink +'">'+ article.articleName +'</a></div>';
@@ -223,7 +206,43 @@
 					});
 				});
 				
-            });
+				$.getJSON('http://localhost:7777/Boke/articleTypeController/articleType.do',function(data){
+					$.each(data,function(index,articleType){
+						var html = '<li>';
+						html += '<a onclick="getArticleByType('+ articleType.id +')">'+ articleType.name +'</a>';
+						html += '</li>';
+						$('#articleType').append(html);
+					});
+				});
+				
+  //          });
+            
+            function getArticleByType(id){
+     			var account = {
+     				articleTypeID:id
+     			}
+            	$.getJSON('http://localhost:7777/Boke/articleController/articleList.do',account,function(data){
+            //		alert("777");
+            		$('#articleContainer').html("");
+					$.each(data,function(index,article){
+						var html = '<li class="article-box">';
+						html += '<div class="title"><a target="_blank" href="'+ article.articleLink +'">'+ article.articleName +'</a></div>';
+						html += '<dl class="user-list">';
+						html += '<dd><a href="">'+ article.articleType.name +'</a></dd>';
+						html += '<dt style="position: relative;width: 20px;"><img src="../img/touxiang.jpg" width="18" style="position: absolute;"/></dt>';
+						html += '<dd style="margin-left: 22px;">'+ article.author.authorName +'</dd>';
+						html += '<dd>'+ article.creationDT +'</dd>';
+						html += '<dd>最新文章</dd>';
+						html += '</dl>';
+						html += '<div class="article-readers">';
+						html += '<div class="visit-num">'+ article.visitsNumber +'</div>';
+						html += '<div class="visit-title">阅读量</div>';
+						html += '</div>';
+						html += '</li>';
+						$('#articleContainer').append(html);
+					});
+				});
+            }
             
         </script>
 	</body>

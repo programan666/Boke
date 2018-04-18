@@ -30,5 +30,12 @@ public class ArticleServiceImpl implements ArticleService {
 		System.out.println("进入了service2");
 		return this.articleDao.findAll();
 	}
+	
+	@Override
+	public List<Article> findByType(int articleTypeID){
+		// TODO Auto-generated method stub
+		System.out.println("进入了service3");
+		return this.articleDao.findByType(articleTypeID);
+	}
 
 }

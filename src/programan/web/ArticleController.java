@@ -40,12 +40,37 @@ public class ArticleController {
 	
 	@RequestMapping("articleList.do")
 	@ResponseBody
-	public List<Article> getarticle(HttpServletRequest request){
-		System.out.println("进入了controller2");
-		List<Article> articles = this.articleService.findAll();
-//		request.setAttribute("article", articles);
+	public List<Article> getArticle(HttpServletRequest request){
+		List<Article> articles;
+	//	int articleTypeID = 0;
+		if(request.getParameter("articleTypeID")==null){
+			System.out.println("进入了controller2");
+			articles = this.articleService.findAll();
+//			request.setAttribute("article", articles);
+			
+		}
+		else{
+			System.out.println("进入了controller3");
+			System.out.println(request);
+			int articleTypeID = Integer.parseInt(request.getParameter("articleTypeID"));
+			articles = this.articleService.findByType(articleTypeID);
+//			System.out.println("%%%%%%%%%%%%%%%%%%%%");
+//			request.setAttribute("article", articles);
+		}
 		return articles;
+		
 	}
+	
+//	@RequestMapping("articleListByType.do")
+//	@ResponseBody
+//	public List<Article> getarticleByType(HttpServletRequest request){
+//		System.out.println("进入了controller3");
+//		System.out.println(request);
+//		int articleTypeID = Integer.parseInt(request.getParameter("articleTypeID"));
+//		List<Article> articles = this.articleService.findByType(articleTypeID);
+////		request.setAttribute("article", articles);
+//		return articles;
+//	}
 	
 	
 }

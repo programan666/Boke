@@ -129,3 +129,7 @@
 	font-size: 13px;
 	color: #6F6F6F;
 }
+
+#articleType a:hover{
+	cursor: pointer;
+}
