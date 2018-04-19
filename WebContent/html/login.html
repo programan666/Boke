@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>账号登录</title>
+		<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="../css/index.css" />
+		<script type="text/javascript" src="../js/global.js"></script>
+		<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../layer/layer.js"></script>
+	</head>
+	<body>
+		
+		<div class="container">
+			<div class="row show-grid login">
+	          <div class="col-md-6 login-left">
+	          	<a href="">
+	          		<img src="../img/loginLeft.jpg" width="530"/>
+	          	</a>
+	          </div>
+	          <div class="col-md-6 login-right">
+	          	<div class="login-info">
+	          		<h3>账号登录</h3>
+	          		<input type="text" id="userName" class="form-control" placeholder="请输入用户名" />
+		          	<input type="password" id="passWord" class="form-control" placeholder="请输入密码" />
+		          	<span>
+		          		<div class="login-result" id="loginResult"></div>
+		          		<a href="">注册</a>
+		          		<a href="">忘记密码</a>
+		          	</span>
+		          	<button id="loginButton" onclick="loginIn()" type="button" class="btn btn-info">登录</button>
+	          	</div>
+	          	<div class="login-info">
+	          		<h4>第三方登录</h4>
+	          		<div style="height: 30px;width: 100%;background: #0066CC;"></div>
+	          	</div>
+	          	
+	          	
+	          </div>
+	       </div>
+		</div>
+		
+		
+		<script type="text/javascript">
+			function loginIn(){
+				
+				var userName = $('#userName').val();
+				var passWord = $('#passWord').val();
+					
+				var acount={
+					userName:userName,
+					passWord:passWord
+				}
+				
+				$.ajax({
+					url:baseUrl+"/authorController/author.do",
+					type:"get",
+					contentType: 'application/json;charset=utf-8',
+					data:acount,
+					success:function(data){
+						var result = data;
+						if(result==1){
+							layer.msg("登陆成功");
+							setTimeout(function() {
+								location.href = 'bokeHome.html';
+							},500);
+						}
+						else{
+							var html = "用户名或密码错误";
+							$('#loginResult').append(html);
+						}
+					}
+					
+				});
+//				$.get(baseUrl+"/authorController/author.do",acount,function(){
+//				})
+					
+			}
+		</script>
+	</body>
+</html>

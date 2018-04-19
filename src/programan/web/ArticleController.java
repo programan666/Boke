@@ -38,6 +38,11 @@ public class ArticleController {
 		return "/test";
 	}
 	
+	@RequestMapping("test.do")
+	public String test(){
+		return "/test";
+	}
+	
 	@RequestMapping("articleList.do")
 	@ResponseBody
 	public List<Article> getArticle(HttpServletRequest request){

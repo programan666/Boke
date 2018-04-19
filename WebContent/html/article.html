@@ -4,10 +4,12 @@
 		<meta charset="UTF-8">
 		<title>article</title>
 		<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css"/>
+		<script type="text/javascript" src="../js/global.js"></script>
 		<script type="text/javascript" src="../ueditor/ueditor.config.js"></script>
 		<script type="text/javascript" src="../ueditor/ueditor.all.js"></script>
 		<script type="text/javascript" src="../ueditor/third-party/jquery-1.10.2.min.js"></script>
 		<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../layer/layer.js"></script>
 		
 	</head>
 	<body>
@@ -77,7 +79,7 @@
                     "dataType": "json",
                     "data":dataGiv,
                     "contentType": "application/json",
-                    "url" : "http://localhost:7777/Boke/articleController/article.do",
+                    "url" : baseUrl+"/articleController/article.do",
                     "success": function(data)
                     {    
                     }

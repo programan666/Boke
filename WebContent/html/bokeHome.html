@@ -12,8 +12,10 @@
 		<link rel="stylesheet" type="text/css" href="../css/htmleaf-demo.css"/>
 		<link rel="stylesheet" type="text/css" href="../css/bootstrap-touch-slider.css"/>
 		<link rel="stylesheet" type="text/css" href="../css/index.css"/>
+		<script type="text/javascript" src="../js/global.js"></script>
 		<script type="text/javascript" src="../ueditor/third-party/jquery-1.10.2.min.js"></script>
 		<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../layer/layer.js"></script>
 
 	</head>
 	<body>
@@ -30,11 +32,11 @@
 				</a> <!-- .nav-trigger -->
 	
 				<ul id="cd-navigation">
-					<li><a href="#0">The team</a></li>
-					<li><a href="#0">Our Products</a></li>
-					<li><a href="#0">Our Services</a></li>
-					<li><a href="#0">Shopping tools</a></li>
-					<li><a href="#0">Contact Us</a></li>
+					<li><a href="#0">主页</a></li>
+					<li><a href="#0">留言</a></li>
+					<li><a href="#0">写博客</a></li>
+					<li><a href="login.html">登录</a></li>
+					<li><a href="#0">注册</a></li>
 				</ul>
 			</nav>
 		</header> 
@@ -185,7 +187,7 @@
          
             
           //  $(document).ready(function(){
-            	$.getJSON('http://localhost:7777/Boke/articleController/articleList.do',function(data){
+            	$.getJSON(baseUrl+'/articleController/articleList.do',function(data){
             //		alert("999");
 					$.each(data,function(index,article){
 						var html = '<li class="article-box">';
@@ -206,7 +208,7 @@
 					});
 				});
 				
-				$.getJSON('http://localhost:7777/Boke/articleTypeController/articleType.do',function(data){
+				$.getJSON(baseUrl+'/articleTypeController/articleType.do',function(data){
 					$.each(data,function(index,articleType){
 						var html = '<li>';
 						html += '<a onclick="getArticleByType('+ articleType.id +')">'+ articleType.name +'</a>';
@@ -221,7 +223,7 @@
      			var account = {
      				articleTypeID:id
      			}
-            	$.getJSON('http://localhost:7777/Boke/articleController/articleList.do',account,function(data){
+            	$.getJSON(baseUrl+'/articleController/articleList.do',account,function(data){
             //		alert("777");
             		$('#articleContainer').html("");
 					$.each(data,function(index,article){
