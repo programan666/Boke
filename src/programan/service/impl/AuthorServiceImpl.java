@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import programan.dao.AuthorDao;
+import programan.pojo.Author;
 import programan.service.AuthorService;
 
 
@@ -16,7 +17,7 @@ public class AuthorServiceImpl implements AuthorService {
 	private AuthorDao authorDao;
 	
 	@Override
-	public int loginIn(String userName, String passWord) {
+	public Author loginIn(String userName, String passWord) {
 		// TODO Auto-generated method stub
 		return this.authorDao.loginIn(userName, passWord);
 	}

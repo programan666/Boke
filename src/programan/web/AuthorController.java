@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import programan.pojo.Author;
 import programan.service.AuthorService;
 
 @Controller
@@ -18,9 +19,8 @@ public class AuthorController {
 	
 	@RequestMapping("author.do")
 	@ResponseBody
-	public String getarticle(String userName,String passWord){
-		String result;
-		result = Integer.toString(this.authorService.loginIn(userName, passWord));
+	public Author getarticle(String userName,String passWord){
+		Author result = this.authorService.loginIn(userName, passWord);
 		System.out.println("result:"+result);
 		return result;
 	}

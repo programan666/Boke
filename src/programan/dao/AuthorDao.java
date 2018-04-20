@@ -1,5 +1,7 @@
 package programan.dao;
 
+import programan.pojo.Author;
+
 public interface AuthorDao {
-	public int loginIn(String userName,String passWord);
+	public Author loginIn(String userName,String passWord);
 }

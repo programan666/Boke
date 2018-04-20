@@ -32,6 +32,9 @@
 				</a> <!-- .nav-trigger -->
 	
 				<ul id="cd-navigation">
+					<li id="authorName">
+						
+					</li>
 					<li><a href="#0">主页</a></li>
 					<li><a href="#0">留言</a></li>
 					<li><a href="#0">写博客</a></li>
@@ -186,7 +189,7 @@
          //   $('#bootstrap-touch-slider').bsTouchSlider();
          
             
-          //  $(document).ready(function(){
+            $(document).ready(function(){
             	$.getJSON(baseUrl+'/articleController/articleList.do',function(data){
             //		alert("999");
 					$.each(data,function(index,article){
@@ -217,7 +220,16 @@
 					});
 				});
 				
-  //          });
+				var author = JSON.parse(sessionStorage.getItem("author"));
+				//alert(author.author.userName);
+				console.log(author);
+				if(author){
+					var html = '<span>欢迎</span>'
+					html += '<span>'+ author.userName +'</span>'
+					$('#authorName').html(html);
+				}
+				
+            });
             
             function getArticleByType(id){
      			var account = {
