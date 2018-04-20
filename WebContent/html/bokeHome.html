@@ -5,6 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>博客主页面</title>
+		<link rel="icon" href="../img/title.ico" type="img/x-ico" />
 		<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css"/>
 		<link href="https://fonts.googleapis.com/css?family=David+Libre|Hind:400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
@@ -32,14 +33,11 @@
 				</a> <!-- .nav-trigger -->
 	
 				<ul id="cd-navigation">
-					<li id="authorName">
-						
-					</li>
 					<li><a href="#0">主页</a></li>
 					<li><a href="#0">留言</a></li>
-					<li><a href="#0">写博客</a></li>
-					<li><a href="login.html">登录</a></li>
-					<li><a href="#0">注册</a></li>
+					<li><a href="#0" onclick="gotoArticle()">写博客</a></li>
+					<li id="unDengLu"><a href="login.html">登录</a></li>
+					<li id="unZhuCe"><a href="regist.html">注册</a></li>
 				</ul>
 			</nav>
 		</header> 
@@ -224,12 +222,16 @@
 				//alert(author.author.userName);
 				console.log(author);
 				if(author){
-					var html = '<span>欢迎</span>'
-					html += '<span>'+ author.userName +'</span>'
-					$('#authorName').html(html);
+					var html = '<li><a href="#0">'+ author.userName +'</a></li>';
+					
+					$('#cd-navigation').append(html);
+					
+					$('#unDengLu').addClass("display-none");
+					$('#unZhuCe').addClass("display-none");
 				}
 				
             });
+            
             
             function getArticleByType(id){
      			var account = {
@@ -256,6 +258,17 @@
 						$('#articleContainer').append(html);
 					});
 				});
+            }
+            
+            function gotoArticle(){
+            	var author = JSON.parse(sessionStorage.getItem("author"));
+				//alert(author.author.userName);
+				if(author){
+					location.href = "article.html";
+				}
+				else{
+					layer.msg("请先登录");
+				}
             }
             
         </script>

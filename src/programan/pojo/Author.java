@@ -5,6 +5,8 @@ public class Author {
 	private String userName;
 	private String passWord;
 	private String authorName;
+	private String email;
+	
 	public int getId() {
 		return id;
 	}
@@ -29,6 +31,13 @@ public class Author {
 	public void setAuthorName(String authorName) {
 		this.authorName = authorName;
 	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	
 	
 }

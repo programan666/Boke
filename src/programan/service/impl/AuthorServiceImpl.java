@@ -21,5 +21,11 @@ public class AuthorServiceImpl implements AuthorService {
 		// TODO Auto-generated method stub
 		return this.authorDao.loginIn(userName, passWord);
 	}
+	
+	@Override
+	public Author regist(Author author){
+		// TODO Auto-generated method stub
+		return this.authorDao.regist(author);
+	}
 
 }

@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>article</title>
+		<link rel="icon" href="../img/title.ico" type="img/x-ico" />
 		<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css"/>
 		<script type="text/javascript" src="../js/global.js"></script>
 		<script type="text/javascript" src="../ueditor/ueditor.config.js"></script>
@@ -51,6 +52,9 @@
 //				visitsNumber: 0,
 //				poiontsNumber: 0
 //			};
+
+			var authorInfo = JSON.parse(sessionStorage.getItem("author"));
+			
 			var account={
 				text: htmlText,
 				articleName: articleName,
@@ -58,12 +62,7 @@
 					id:1,
 					name:"人工智能"
 				},
-				author: {
-					id:1,
-					userName:"programan",
-					passWord:"acm666666",
-					authorName:"染红岁月"
-				},
+				author: authorInfo,
 				articleIntroduction: articleIntroduction,
 				visitsNumber: 0,
 				poiontsNumber: 0
@@ -72,16 +71,20 @@
 //			$.post('http://localhost:7777/Boke/articleController/article.do',dataGiv,function(){
 //				
 //			});
-
+//			alert("999");
 			$.ajax(
                 {
-                    "type": "post",
-                    "dataType": "json",
-                    "data":dataGiv,
-                    "contentType": "application/json",
-                    "url" : baseUrl+"/articleController/article.do",
-                    "success": function(data)
-                    {    
+                    type: "post",
+                    dataType: "json",
+                    data:dataGiv,
+                    contentType: "application/json",
+                    url: baseUrl+"/articleController/article.do",
+                    success: function(data){    
+                    	layer.msg("提交成功");
+                    	setTimeout(function(){
+                    		location.href = "bokeHome.html";
+                    	},500);
+                    	
                     }
             });
 			

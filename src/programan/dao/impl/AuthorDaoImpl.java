@@ -23,7 +23,7 @@ public class AuthorDaoImpl implements AuthorDao {
 //		System.out.println("userName:"+userName);
 //		System.out.println("passWord:"+passWord);
 		session=this.sessionFactory.getCurrentSession();
-		String SQL="SELECT * FROM author WHERE user_name=?";
+		String SQL = "SELECT * FROM author WHERE user_name=?";
 		@SuppressWarnings("unchecked")
 		Author author=(Author)session.createSQLQuery(SQL).addEntity(Author.class)
 				.setString(0, userName).uniqueResult();
@@ -49,6 +49,27 @@ public class AuthorDaoImpl implements AuthorDao {
 		}
 		
 		return null;
+	}
+	
+	@Override
+	public Author regist(Author author){
+		
+		session = this.sessionFactory.getCurrentSession();
+		String SQL = "SELECT * FROM author WHERE user_name=?";
+		Author checkAuthor = (Author)session.createSQLQuery(SQL).addEntity(Author.class)
+				.setString(0, author.getUserName()).uniqueResult();
+		if(checkAuthor==null){
+			session.save(author);
+			String SQL1 = "SELECT * FROM author WHERE user_name=?";
+			Author authorResult = (Author)session.createSQLQuery(SQL1).addEntity(Author.class)
+					.setString(0, author.getUserName()).uniqueResult();
+			return authorResult;
+		}
+		else{
+			System.out.println("该用户名已经被注册");
+		}
+		return null;
+		
 	}
 
 }

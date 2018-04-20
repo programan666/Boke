@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>账号登录</title>
+		<link rel="icon" href="../img/title.ico" type="img/x-ico" />
+		<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="../css/index.css" />
+		<script type="text/javascript" src="../js/global.js"></script>
+		<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../layer/layer.js"></script>
+	</head>
+	<body>
+		
+		<div class="regist">
+			<div class="regist-left">
+				
+			</div>
+			<div class="regist-right">
+				<div class="user-info">
+					<h1>欢迎注册</h1>
+					<input type="text" id="registUserName" class="form-control" placeholder="用户名" />
+					<input type="password" id="registPassword" class="form-control" placeholder="密码" />
+					<input type="password" id="registPasswordR" class="form-control" placeholder="再次输入密码" />
+					<input type="text" id="registEmail" class="form-control" placeholder="邮箱" />
+					<p id="errorMessage" class="regist-result"></p>
+					<button type="button" class="btn btn-success" onclick="regist()">注册</button>
+				</div>
+			</div>
+		</div>
+		
+		
+		<script type="text/javascript">
+			
+			$('.regist').height($(window).height());
+			
+			
+			function regist(){
+				
+				var userName = $('#registUserName').val();
+				var passWord = $('#registPassword').val();
+				var passWord1 = $('#registPasswordR').val();
+				var email = $('#registEmail').val();
+				var emailTest = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+				
+				
+				if(userName.length<6||passWord.length<6||passWord1.length<6){
+					$('#errorMessage').html("用户名或密码不能小于6个字符");
+					return false;
+				}
+				if(passWord!=passWord1){
+					$('#errorMessage').html("两次密码不一致");
+					return false;
+				}
+				if(!emailTest.test(email)){
+					$('#errorMessage').html("邮箱格式不正确");
+					return false;
+				}
+				
+	//			alert(userName+passWord+email);
+				
+				var acount = {
+					userName:userName,
+					passWord:passWord,
+					authorName:userName,
+					email:email
+				}
+				
+				var requestData = JSON.stringify(acount);
+				
+				$.ajax({
+					type:"post",
+					dataType: "json",
+					contentType: 'application/json;charset=utf-8',
+					url:baseUrl+"/authorController/authorRegist.do",
+					data:requestData,
+					success:function(data){
+						var result = data;
+					//	alert("99");
+						if(result!=null&&result.id!=-1){
+							sessionStorage.setItem('author',JSON.stringify(result));
+							layer.msg("注册成功");
+							setTimeout(function(){
+								location.href = 'bokeHome.html';
+							},500);
+						}
+						else{
+							$('#errorMessage').html("该用户名已被注册");
+						}
+					}
+				});
+			}
+			
+			
+		</script>
+	</body>
+</html>

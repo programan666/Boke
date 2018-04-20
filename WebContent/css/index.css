@@ -203,6 +203,59 @@ a:hover{
 }
 
 .login-result{
+	height: 20px;
 	float: left;
 	color: red;
 }
+
+.regist{
+	width: 100%;
+}
+
+.regist-left{
+	width: 30%;
+	height: 100%;
+	float: left;
+	background: url(../img/registLeft.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+
+.regist-right{
+	width: 70%;
+	height: 100%;
+	padding: 100px 150px;
+	float: right;
+//	background: red;
+}
+
+.user-info{
+	width: 400px;	
+}
+
+.user-info h1{
+	text-align: center;
+}
+
+.user-info input{
+	margin-top: 20px;
+	height: 50px;
+	line-height: 50px;
+}
+
+.user-info button{
+	width: 100%;
+	height: 50px;
+	font-size: 20px;
+	margin-top: 20px;
+}
+
+.regist-result{
+	height: 20px;
+	margin-top: 5px;
+	color: red;
+}
+
+.display-none{
+	display: none!important;
+}
+

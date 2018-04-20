@@ -28,6 +28,7 @@ public class ArticleController {
 	}
 	
 	@RequestMapping("article.do")
+	@ResponseBody
 	public String getarticle(@RequestBody Article article){
 		System.out.println("进入了controller1");
 		System.out.println("@@@"+article.getAuthor().getUserName());
@@ -35,7 +36,7 @@ public class ArticleController {
 		System.out.println("@@@@"+article.getArticleType().getName());
 //		System.out.println(article.getText());
 		this.articleService.createArticle(article);
-		return "/test";
+		return "1";
 	}
 	
 	@RequestMapping("test.do")
