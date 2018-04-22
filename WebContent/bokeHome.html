@@ -5,24 +5,24 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>博客主页面</title>
-		<link rel="icon" href="../img/title.ico" type="img/x-ico" />
-		<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css"/>
+		<link rel="icon" href="img/title.ico" type="img/x-ico" />
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"/>
 		<link href="https://fonts.googleapis.com/css?family=David+Libre|Hind:400,700" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
-		<link rel="stylesheet" type="text/css" href="../css/style.css"/>
-		<link rel="stylesheet" type="text/css" href="../css/htmleaf-demo.css"/>
-		<link rel="stylesheet" type="text/css" href="../css/bootstrap-touch-slider.css"/>
-		<link rel="stylesheet" type="text/css" href="../css/index.css"/>
-		<script type="text/javascript" src="../js/global.js"></script>
-		<script type="text/javascript" src="../ueditor/third-party/jquery-1.10.2.min.js"></script>
-		<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../layer/layer.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css"/>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-touch-slider.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<script type="text/javascript" src="js/global.js"></script>
+		<script type="text/javascript" src="ueditor/third-party/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="layer/layer.js"></script>
 
 	</head>
 	<body>
 		
 		<header class="cd-auto-hide-header">
-			<div class="logo"><a href="#0"><img src="../img/logo.jpg" alt="Logo"></a></div>
+			<div class="logo"><a href="#0"><img src="img/logo.jpg" alt="Logo"></a></div>
 	
 			<nav class="cd-primary-nav">
 				<a href="#cd-navigation" class="nav-trigger">
@@ -71,7 +71,7 @@
 			                <div class="item active">
 		
 			                    <!-- Slide Background -->
-			                    <img src="../img/slide1.jpeg" alt="Bootstrap Touch Slider"  class="slide-image"/>
+			                    <img src="img/slide1.jpeg" alt="Bootstrap Touch Slider"  class="slide-image"/>
 			                    <div class="bs-slider-overlay"></div>
 		
 			                    <div class="container">
@@ -92,7 +92,7 @@
 			                <div class="item">
 		
 			                    <!-- Slide Background -->
-			                    <img src="../img/slide2.jpeg" alt="Bootstrap Touch Slider"  class="slide-image"/>
+			                    <img src="img/slide2.jpeg" alt="Bootstrap Touch Slider"  class="slide-image"/>
 			                    <div class="bs-slider-overlay"></div>
 			                    <!-- Slide Text Layer -->
 			                    <div class="slide-text slide_style_center">
@@ -108,7 +108,7 @@
 			                <div class="item">
 		
 			                    <!-- Slide Background -->
-			                    <img src="../img/slide3.jpeg" alt="Bootstrap Touch Slider"  class="slide-image"/>
+			                    <img src="img/slide3.jpeg" alt="Bootstrap Touch Slider"  class="slide-image"/>
 			                    <div class="bs-slider-overlay"></div>
 			                    <!-- Slide Text Layer -->
 			                    <div class="slide-text slide_style_right">
@@ -148,7 +148,7 @@
 		        					<a href="">编程语言</a>
 		        				</dd>
 		        				<dt style="position: relative;width: 20px;">
-		        					<img src="../img/touxiang.jpg" width="18" style="position: absolute;"/>
+		        					<img src="img/touxiang.jpg" width="18" style="position: absolute;"/>
 		        				</dt>
 		        				<dd style="margin-left: 22px;">
 		        					染红岁月
@@ -179,10 +179,10 @@
 		</div>
 		
 	
-		<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
-		<script type="text/javascript" src="../js/main.js"></script>
-		<script type="text/javascript" src="../js/index.js"></script>
-		<script type="text/javascript" src="../js/bootstrap-touch-slider-min.js"></script>
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/bootstrap-touch-slider-min.js"></script>
 		<script type="text/javascript">
          //   $('#bootstrap-touch-slider').bsTouchSlider();
          
@@ -195,7 +195,7 @@
 						html += '<div class="title"><a target="_blank" href="'+ article.articleLink +'">'+ article.articleName +'</a></div>';
 						html += '<dl class="user-list">';
 						html += '<dd><a href="">'+ article.articleType.name +'</a></dd>';
-						html += '<dt style="position: relative;width: 20px;"><img src="../img/touxiang.jpg" width="18" style="position: absolute;"/></dt>';
+						html += '<dt style="position: relative;width: 20px;"><img src="img/touxiang.jpg" width="18" style="position: absolute;"/></dt>';
 						html += '<dd style="margin-left: 22px;">'+ article.author.authorName +'</dd>';
 						html += '<dd>'+ article.creationDT +'</dd>';
 						html += '<dd>最新文章</dd>';
@@ -207,7 +207,12 @@
 						html += '</li>';
 						$('#articleContainer').append(html);
 					});
-				});
+				}).fail(function (jqXHR, textStatus, errorThrown) {
+//  var defaultOption = 'US'
+//  selectDropdownByText('Id', defaultOption);
+
+    console.log(errorThrown);
+});
 				
 				$.getJSON(baseUrl+'/articleTypeController/articleType.do',function(data){
 					$.each(data,function(index,articleType){
@@ -216,7 +221,12 @@
 						html += '</li>';
 						$('#articleType').append(html);
 					});
-				});
+				}).fail(function (jqXHR, textStatus, errorThrown) {
+//  var defaultOption = 'US'
+//  selectDropdownByText('Id', defaultOption);
+
+    console.log(errorThrown);
+});
 				
 				var author = JSON.parse(sessionStorage.getItem("author"));
 				//alert(author.author.userName);
@@ -245,7 +255,7 @@
 						html += '<div class="title"><a target="_blank" href="'+ article.articleLink +'">'+ article.articleName +'</a></div>';
 						html += '<dl class="user-list">';
 						html += '<dd><a href="">'+ article.articleType.name +'</a></dd>';
-						html += '<dt style="position: relative;width: 20px;"><img src="../img/touxiang.jpg" width="18" style="position: absolute;"/></dt>';
+						html += '<dt style="position: relative;width: 20px;"><img src="img/touxiang.jpg" width="18" style="position: absolute;"/></dt>';
 						html += '<dd style="margin-left: 22px;">'+ article.author.authorName +'</dd>';
 						html += '<dd>'+ article.creationDT +'</dd>';
 						html += '<dd>最新文章</dd>';
@@ -257,7 +267,12 @@
 						html += '</li>';
 						$('#articleContainer').append(html);
 					});
-				});
+				}).fail(function (jqXHR, textStatus, errorThrown) {
+//  var defaultOption = 'US'
+//  selectDropdownByText('Id', defaultOption);
+
+    console.log(errorThrown);
+});
             }
             
             function gotoArticle(){

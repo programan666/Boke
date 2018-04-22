@@ -1,2 +1,2 @@
 //服务端url
-var baseUrl= "http://localhost:7777/Boke";
+var baseUrl= "http://www.programan.cn/Boke";

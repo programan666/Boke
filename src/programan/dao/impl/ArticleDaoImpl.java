@@ -1,5 +1,6 @@
 package programan.dao.impl;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
@@ -32,7 +33,16 @@ public class ArticleDaoImpl implements ArticleDao {
 		session=this.sessionFactory.getCurrentSession();
 	//	fileRoad = this.getClass().getClassLoader().getResource("/").getPath()+"programan/article/"+article.getId()+".html";
 	//	fileRoad = this.getClass().getClassLoader().getResource("/").getPath().replaceAll("WEB-INF/classes/", "")+"article/"+date.getTime()+".html";
-		fileRoad = "D:/bokeArticle/"+date.getTime()+".html";
+		fileRoad = "/usr/local/nginx/html/bokeArticle/"+date.getTime()+".html";
+		File f=new File(fileRoad);
+		f.setWritable(true, false);   
+		try {
+			f.createNewFile();
+			Runtime.getRuntime().exec("chmod 755 "+fileRoad);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		System.out.print(fileRoad);
 	//	File file = new File(fileRoad);
 //		try { 
@@ -58,7 +68,7 @@ public class ArticleDaoImpl implements ArticleDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		article.setArticleLink(fileRoad.replaceAll("/C:/apache-tomcat-8.0.41-windows-x64/apache-tomcat-8.0.41/webapps/", "http://127.0.0.1:7777/"));
+		article.setArticleLink(fileRoad.replaceAll("/usr/local/nginx/html/", "http://www.programan.cn/"));
 		article.setCreationDT(date.toString());
 		session.save(article);		 
 		

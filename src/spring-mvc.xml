@@ -37,7 +37,7 @@ xmlns:context="http://www.springframework.org/schema/context"
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
 	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->  
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" >  
-        <property name="prefix" value="/html"></property>  
+        <property name="prefix" value="/"></property>  
         <property name="suffix" value=".html"></property>  
     </bean>	
 </beans>
